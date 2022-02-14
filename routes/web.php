@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogPostController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SuperAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +40,9 @@ Route::put('/blog/{blogPost}/edit', [BlogPostController::class, 'update']);
 
 // Destroy the blog post
 Route::delete('/blog/{blogPost}', [BlogPostController::class, 'destroy']);
+
+
+// AUTHENTICATION
+Route::get('/admin', [AdminController::class, 'index']);
+
+Route::get('/superadmin', [SuperAdminController::class, 'index']);
