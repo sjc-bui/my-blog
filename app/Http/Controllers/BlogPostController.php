@@ -23,12 +23,18 @@ class BlogPostController extends Controller
 
     public function store(Request $request)
     {
+        $validate = $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
         //store a new post
         $newPost = BlogPost::create([
             'title'   => $request->title,
             'body'    => $request->body,
             'user_id' => 1
         ]);
+
         return redirect('blog/'.$newPost->id);
     }
 

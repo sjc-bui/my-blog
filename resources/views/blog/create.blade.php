@@ -8,17 +8,26 @@
                 <div class="border rounded mt-5 pl-4 pr-4 pt-4 pb-4">
                     <h1 class="display-4">Create a New Post</h1>
                     <p>Fill and submit this form to create a post.</p>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <hr>
                     <form action="" method="POST">
                         @csrf
                         <div class="row">
                             <div class="control-group col-12">
                                 <label for="title">Post title</label>
-                                <input type="text" id="title" class="form-control" name="title" placeholder="Enter post title" required>
+                                <input type="text" id="title" class="form-control" name="title" placeholder="Enter post title" value="{{ old('title')}}">
                             </div>
                             <div class="control-group col-12 mt-2">
                                 <label for="body">Post body</label>
-                                <textarea type="text" id="body" class="form-control" name="body" placeholder="Enter post body" required></textarea>
+                                <textarea type="text" id="body" class="form-control" name="body" placeholder="Enter post body">{{ old('body')}}</textarea>
                             </div>
                         </div>
                         <div class="row mt-2">
