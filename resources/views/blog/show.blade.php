@@ -4,8 +4,9 @@
     <div class="container">
         <div class="row">
             <div class="col-12 pt-2">
-                <a href="/blog" class="btn btn-outline-primary btn-sm">Go back</a>
+                <a href="{{ route('blogs') }}" class="btn btn-outline-primary btn-sm">Go back</a>
                 <h1 class="dislay-one">{{ ucfirst($post->title) }}</h1>
+                <h5 class="dislay-one">Uncategorized</h5>
                 <p>{!! $post->body !!}</p>
                 <hr>
             </div>
@@ -22,7 +23,7 @@
         </div>
         <div class="row">
             <div class="col-12 pt-2">
-                <a href="/blog/{{ $post->id }}/edit" class="btn btn-outline-primary">Edit post</a>
+                <a href="{{ route('blog.edit', $post->id) }}" class="btn btn-outline-primary">Edit post</a>
                 <br><br>
                 <form action="" id="delete-frm" method="POST">
                     @method('DELETE')

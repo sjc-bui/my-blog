@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 
 // The route we have created to show all blog posts.
-Route::get('/blog', [BlogPostController::class, 'index']);
+Route::get('/blog', [BlogPostController::class, 'index'])->name('blogs');
 
 // Show 1 blog post.
 Route::get('/blog/{blogPost}', [BlogPostController::class, 'show'])->name('blog.show');
@@ -33,10 +33,10 @@ Route::get('/blog/create/post', [BlogPostController::class, 'create']);
 Route::post('/blog/create/post', [BlogPostController::class, 'store']);
 
 // Show edit post form
-Route::get('/blog/{blogPost}/edit', [BlogPostController::class, 'edit']);
+Route::get('/blog/{blogPost}/edit', [BlogPostController::class, 'edit'])->name('blog.edit');
 
 // Commit edited post to the database
-Route::put('/blog/{blogPost}/edit', [BlogPostController::class, 'update']);
+Route::put('/blog/{blogPost}/edit', [BlogPostController::class, 'update'])->name('blog.update');
 
 // Destroy the blog post
 Route::delete('/blog/{blogPost}', [BlogPostController::class, 'destroy']);

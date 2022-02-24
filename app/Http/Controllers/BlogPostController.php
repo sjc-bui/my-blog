@@ -57,13 +57,13 @@ class BlogPostController extends Controller
             'title' => $request->title,
             'body' => $request->body
         ]);
-        return redirect('blog/'.$blogPost->id);
+        return redirect(route('blog.show', $blogPost->id));
     }
 
     public function destroy(BlogPost $blogPost)
     {
         //delete a post
         $blogPost->delete();
-        return redirect('/blog');
+        return redirect(route('blogs'));
     }
 }
