@@ -24,7 +24,7 @@ Route::get('/', function () {
 Route::get('/blog', [BlogPostController::class, 'index']);
 
 // Show 1 blog post.
-Route::get('/blog/{blogPost}', [BlogPostController::class, 'show']);
+Route::get('/blog/{blogPost}', [BlogPostController::class, 'show'])->name('blog.show');
 
 // Show create post form
 Route::get('/blog/create/post', [BlogPostController::class, 'create']);

@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\BlogPost;
+use Illuminate\Support\Facades\DB;
 
 class BlogPostController extends Controller
 {
     public function index()
     {
-        // show all blog posts
-        $posts = BlogPost::all(); // fetch all blog post form the database
-        return view('blog.index', ['posts' => $posts]); // return the view with posts
+        //$posts = DB::table('blog_posts')->paginate(5);
+        $posts = BlogPost::paginate(5);
+        return view('blog.index', ['posts' => $posts]);
     }
 
     public function create()
@@ -34,7 +35,13 @@ class BlogPostController extends Controller
     public function show(BlogPost $blogPost)
     {
         //show a blog post
-        return view('blog.show', ['post' => $blogPost]);
+        $next = BlogPost::where('id', '>', $blogPost->id)->orderBy('id')->first();
+        $prev = BlogPost::where('id', '<', $blogPost->id)->orderBy('id', 'desc')->first();
+        return view('blog.show', [
+            'post' => $blogPost,
+            'prev' => $prev,
+            'next' => $next
+        ]);
     }
 
     public function edit(BlogPost $blogPost)
