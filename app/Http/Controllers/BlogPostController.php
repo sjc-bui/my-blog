@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\BlogPost;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class BlogPostController extends Controller
@@ -18,21 +19,26 @@ class BlogPostController extends Controller
     public function create()
     {
         //show form to create a blog post
-        return view('blog.create');
+        $users = User::all();
+        return view('blog.create', compact('users'));
     }
 
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'title' => 'required',
+            'title' => 'required|min:3|max:255',
             'body' => 'required',
+        ],
+        [
+            'title.required' => 'タイトル必須項目',
+            'body.required' => '記事内容必須項目',
         ]);
 
         //store a new post
         $newPost = BlogPost::create([
             'title'   => $request->title,
             'body'    => $request->body,
-            'user_id' => 1
+            'user_id' => $request->user_id,
         ]);
 
         return redirect('blog/'.$newPost->id);

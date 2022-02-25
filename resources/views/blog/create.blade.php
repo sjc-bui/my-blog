@@ -29,6 +29,14 @@
                                 <label for="body">Post body</label>
                                 <textarea type="text" id="body" class="form-control" name="body" placeholder="Enter post body">{{ old('body')}}</textarea>
                             </div>
+                            <div class="control-group col-12 mt-2">
+                                <select name="user_id" id="user_id" class="form-control">
+                                    <option value="">Select user</option>
+                                    @foreach ($users as $user)
+                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                         <div class="row mt-2">
                             <div class="control-group col-12 text-center">

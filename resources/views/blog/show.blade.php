@@ -6,7 +6,7 @@
             <div class="col-12 pt-2">
                 <a href="{{ route('blogs') }}" class="btn btn-outline-primary btn-sm">Go back</a>
                 <h1 class="dislay-one">{{ ucfirst($post->title) }}</h1>
-                <h5 class="dislay-one">Uncategorized</h5>
+                <h5 class="dislay-one">{{ $post->user_id }}</h5>
                 <p>{!! $post->body !!}</p>
                 <hr>
             </div>
